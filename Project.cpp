@@ -211,7 +211,7 @@ public:
         bookCount = 0;
         userCount = 0;
     }
-
+//adds a book to the library
     void addBook(Book b)
     {
         for (int i = 0; i < bookCount; i++) {
@@ -224,7 +224,7 @@ public:
         books[bookCount++] = b;
     }
     }
-
+//registers a user
     void registerUser(LibraryUser u) {
     for (int i = 0; i < userCount; i++) {
         if (users[i].getUserId() == u.getUserId()) {
@@ -236,7 +236,7 @@ public:
         users[userCount++] = u;
     }
     }
-
+//removes book with the isbn
     void removeBook(string isbn)
     {
         for (int i = 0; i < bookCount; i++)
@@ -254,7 +254,7 @@ public:
         }
         cout << "Book with ISBN: " << isbn << " not found." << endl;
     }
-
+//this one removes a user with the entered id
     void removeUser(string userId)
     {
         for (int i = 0; i < userCount; i++)
@@ -272,7 +272,7 @@ public:
         }
         cout << "User with ID: " << userId << " not found." << endl;
     }
-
+//getter to display all books
     void displayAllBooks()
     {
         for (int i = 0; i < bookCount; i++)
@@ -280,7 +280,7 @@ public:
             books[i].getBookDetails(); cout << endl;
         }
     }
-
+//getter to display all users
     void displayAllUsers()
     {
         for (int i = 0; i < userCount; i++)
@@ -293,7 +293,7 @@ public:
 //Well, not actually that messy now since I used VSCode's "Format Document" button
 //nullptr is used to indicate that it points to nothing yet, I read somewhere that not initizialing where it points first may
 //crash the program but I added it just to be sure
-
+//this borrows the book
     bool borrowBook(string isbn, string userId)
     {
         Book* bookPtr = nullptr;
@@ -327,7 +327,7 @@ public:
 
         return userPtr -> borrowBook(*bookPtr);
     }
-
+//returns the books
     bool returnBook(string isbn, string userId)
     {
         Book* bookPtr = nullptr;
@@ -362,7 +362,7 @@ public:
 
         return userPtr -> returnBook(*bookPtr);
     }
-
+//saves books data to file
     void saveBooksToFile()
     {
         ofstream saveFile("books.txt");
@@ -373,7 +373,7 @@ public:
         }
         saveFile.close();
     }
-
+//loads books data to file
     void loadBooksFromFile()
     {
         ifstream loadFile("books.txt");
@@ -391,7 +391,7 @@ public:
         }
         loadFile.close();
     }
-
+//saves users data to file
     void saveUsersToFile()
     {
         ofstream saveFile("users.txt");
@@ -407,7 +407,7 @@ public:
         }
         saveFile.close();
     }
-
+//loads users data from file
     void loadUsersFromFile()
     {
         ifstream loadFile("users.txt");
@@ -439,10 +439,11 @@ int main()
     
     Library library;
 
-    // Load existing data if available
+    //this loads existing data from file if available
     library.loadBooksFromFile();
     library.loadUsersFromFile();
 
+    //the menu, it uh...provides the menu selection that does stuffs
     int choice;
     do {
         cout << "\n=== Library Menu ===\n";
@@ -455,7 +456,7 @@ int main()
         cout << "7. Save and Exit\n";
         cout << "Choose an option: ";
         cin >> choice;
-        cin.ignore(); // consume newline
+        cin.ignore();
 
         if (choice == 1) {
             string title, author, isbn;
